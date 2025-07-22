@@ -114,13 +114,13 @@ services:
     <<: *service-ollama
 
   ollama-gpu:
-    profiles: ["gpu-nvidia"]
+    profiles: ["gpu-intel"]
     <<: *service-ollama
     deploy:
       resources:
         reservations:
           devices:
-            - driver: nvidia
+            - driver: intel
               count: 1
               capabilities: [gpu]
 
@@ -139,7 +139,7 @@ services:
       - ollama-cpu
 
   ollama-pull-llama-gpu:
-    profiles: ["gpu-nvidia"]
+    profiles: ["gpu-intel"]
     <<: *init-ollama
     depends_on:
       - ollama-gpu
